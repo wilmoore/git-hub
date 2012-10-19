@@ -3,7 +3,7 @@ git-hub(1) -- github.com CLI
 
 ## SYNOPSIS
 
-`git hub` [--force-origin] <contributors | issues | pull-request | stargazers | wiki>
+`git hub [--force-origin] <contributors | issues | pull-request | stargazers | wiki>`
 
 ## DESCRIPTION
 
