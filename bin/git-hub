@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
-#
-# Copyright (c) 2012 Wil Moore III <wil.moore@wilmoore.com>
-#
-# Browse to corresponding repository web page assuming github.com compatible URL scheme
 
-SUBDIRECTORY_OK=Yes
+################################################################################
+# name: git-hub
+# what: control your github.com (or enterprise) repo from the command-line
+################################################################################
+# copyright (c) 2012 Wil Moore III <wil.moore@wilmoore.com>
+
+################################################################################
+# "Be conservative in what you do; be liberal in which you accept from others."
+################################################################################
+
+set -e
+set -o errexit
+set -o errtrace
+
+################################################################################
+# command-line options
+################################################################################
+
 OPTIONS_SPEC="\
 git hub [ --contributors | --issues | --pull-request | --stargazers | --wiki ]
 --
@@ -16,25 +29,50 @@ w,wiki          go to wiki pages
 force-origin    force origin
 "
 
+################################################################################
+# NOT RECOMMENDED TO MODIFY UNLESS YOU KNOW EXACTLY WHAT YOU ARE DOING!
+################################################################################
+
+# run from a subdirectory
+SUBDIRECTORY_OK=Yes
+
+################################################################################
+# bootstrap
+################################################################################
+
 . git-sh-setup
 . git-sh-i18n
 
+# require a working tree
 require_work_tree_exists
 
-upstream_url()
-{
+# current git branch
+CURRENT_BRANCH=$(git describe --contains --all HEAD)
+
+# force use of origin remote?
+FORCE_ORIGIN=0
+
+for opt; do
+  if [ ${opt} = '--force-origin' ]; then
+    FORCE_ORIGIN=1
+  fi
+done
+
+################################################################################
+# helpers
+################################################################################
+
+upstream_url() {
   local URL=$(git config --get remote.upstream.url)
   echo $(echo ${URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
 }
 
-origin_url()
-{
+origin_url() {
   local URL=$(git config --get remote.origin.url)
   echo $(echo ${URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
 }
 
-upstream_or_origin()
-{
+upstream_or_origin() {
   if [ ! -z "$(upstream_url)" ]; then
     echo $(upstream_url)
   else
@@ -42,16 +80,9 @@ upstream_or_origin()
   fi
 }
 
-CURRENT_BRANCH=$(git describe --contains --all HEAD)
-FORCE_ORIGIN=0
-
-for opt
-do
-  if [ ${opt} = '--force-origin' ]; then
-    FORCE_ORIGIN=1
-  fi
-done
-
+################################################################################
+# commands
+################################################################################
 
 for opt
 do
@@ -82,9 +113,11 @@ do
 
     -p|--pull-request)
 
-      if [ ! -z "$CURRENT_BRANCH" ]; then
+      if [ $(git branch -r | grep $CURRENT_BRANCH) ]; then
+        # if we are on a branch and it exists on origin, issue pull request against it
         open http://$(origin_url)/pull/new/$CURRENT_BRANCH
       else
+        # otherwise, issue a blank pull request
         open http://$(origin_url)/pull/new
       fi
 
@@ -130,4 +163,3 @@ do
 
   esac
 done
-
