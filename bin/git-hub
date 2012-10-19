@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+#
+# Copyright (c) 2012 Wil Moore III <wil.moore@wilmoore.com>
+#
+# Browse to corresponding repository web page assuming github.com compatible URL scheme
+
+SUBDIRECTORY_OK=Yes
+OPTIONS_SPEC="\
+git hub [ --contributors | --issues | --pr | --stargazers | --wiki ]
+--
+c,contributors  go to contributors list
+i,issues        go to issue tracker
+p,pr            go to pull requests
+s,stargazers    go to stargazers list
+w,wiki          go to wiki pages
+"
+
+. git-sh-setup
+. git-sh-i18n
+
+require_work_tree_exists
+
+github_url()
+{
+  local ORIGIN_URL=$(git config --get remote.origin.url)
+  echo $(echo ${ORIGIN_URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
+}
+
+for opt
+do
+  case "$opt" in
+    -c|--contributors)
+      open http://$(github_url)/graphs/contributors
+      break
+      ;;
+
+    -i|--issues)
+      open http://$(github_url)/issues
+      break
+      ;;
+
+    -p|--pr)
+      open http://$(github_url)/pulls
+      break
+      ;;
+
+    -s|--stargazers)
+      open http://$(github_url)/stargazers
+      break
+      ;;
+
+    -w|--wiki)
+      open http://$(github_url)/wiki
+      break
+      ;;
+
+    -h|--help-all)
+      usage
+      ;;
+
+    *)
+      open http://$(github_url)
+      break
+      ;;
+
+  esac
+done
+
