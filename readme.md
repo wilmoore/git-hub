@@ -1,4 +1,4 @@
-git-hub(1) -- github.com CLI
+git-hub(1)
 =======================================
 
 ## SYNOPSIS
@@ -7,7 +7,7 @@ git-hub(1) -- github.com CLI
 
 ## DESCRIPTION
 
-  Control your github.com (or enterprise) repo from the command-line.
+  `git(1)` extension to control your github.com (or enterprise) repo from the command-line.
 
 ## COMMANDS
 
