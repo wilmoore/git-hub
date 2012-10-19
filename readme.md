@@ -11,29 +11,29 @@ git-hub(1) -- github.com CLI
 
 ## COMMANDS
 
-  contributors
+  `contributors`
 
   go to contributors list.
 
-  issues
+  `issues`
 
   go to issue tracker.
 
-  pull-request
+  `pull-request`
 
   new pull request from current branch.
 
-  stargazers
+  `stargazers`
 
   go to stargazers list.
 
-  wiki
+  `wiki`
 
   go to wiki pages.
 
 ## OPTIONS
 
-  --force-origin
+  `--force-origin`
 
   force the use of `origin` rather than `upstream`.
 
