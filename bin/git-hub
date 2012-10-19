@@ -6,13 +6,14 @@
 
 SUBDIRECTORY_OK=Yes
 OPTIONS_SPEC="\
-git hub [ --contributors | --issues | --pr | --stargazers | --wiki ]
+git hub [ --contributors | --issues | --pull-request | --stargazers | --wiki ]
 --
 c,contributors  go to contributors list
 i,issues        go to issue tracker
-p,pr            go to pull requests
+p,pull-request  new pull request from current branch
 s,stargazers    go to stargazers list
 w,wiki          go to wiki pages
+force-origin    force origin
 "
 
 . git-sh-setup
@@ -20,37 +21,95 @@ w,wiki          go to wiki pages
 
 require_work_tree_exists
 
-github_url()
+upstream_url()
 {
-  local ORIGIN_URL=$(git config --get remote.origin.url)
-  echo $(echo ${ORIGIN_URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
+  local URL=$(git config --get remote.upstream.url)
+  echo $(echo ${URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
 }
+
+origin_url()
+{
+  local URL=$(git config --get remote.origin.url)
+  echo $(echo ${URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
+}
+
+upstream_or_origin()
+{
+  if [ ! -z "$(upstream_url)" ]; then
+    echo $(upstream_url)
+  else
+    echo $(origin_url)
+  fi
+}
+
+CURRENT_BRANCH=$(git describe --contains --all HEAD)
+FORCE_ORIGIN=0
 
 for opt
 do
+  if [ ${opt} = '--force-origin' ]; then
+    FORCE_ORIGIN=1
+  fi
+done
+
+
+for opt
+do
+
   case "$opt" in
+
     -c|--contributors)
-      open http://$(github_url)/graphs/contributors
+
+      if [[ $FORCE_ORIGIN -eq 1 ]]; then
+        open http://$(origin_url)/graphs/contributors
+      else
+        open http://$(upstream_or_origin)/graphs/contributors
+      fi
+
       break
       ;;
 
     -i|--issues)
-      open http://$(github_url)/issues
+
+      if [[ $FORCE_ORIGIN -eq 1 ]]; then
+        open http://$(origin_url)/issues
+      else
+        open http://$(upstream_or_origin)/issues
+      fi
+
       break
       ;;
 
-    -p|--pr)
-      open http://$(github_url)/pulls
+    -p|--pull-request)
+
+      if [ ! -z "$CURRENT_BRANCH" ]; then
+        open http://$(origin_url)/pull/new/$CURRENT_BRANCH
+      else
+        open http://$(origin_url)/pull/new
+      fi
+
       break
       ;;
 
     -s|--stargazers)
-      open http://$(github_url)/stargazers
+
+      if [[ $FORCE_ORIGIN -eq 1 ]]; then
+        open http://$(origin_url)/stargazers
+      else
+        open http://$(upstream_or_origin)/stargazers
+      fi
+
       break
       ;;
 
     -w|--wiki)
-      open http://$(github_url)/wiki
+
+      if [[ $FORCE_ORIGIN -eq 1 ]]; then
+        open http://$(origin_url)/wiki
+      else
+        open http://$(upstream_or_origin)/wiki
+      fi
+
       break
       ;;
 
@@ -59,7 +118,13 @@ do
       ;;
 
     *)
-      open http://$(github_url)
+
+      if [ ! -z "$CURRENT_BRANCH" ]; then
+        open http://$(origin_url)/tree/$CURRENT_BRANCH
+      else
+        open http://$(origin_url)
+      fi
+
       break
       ;;
 
