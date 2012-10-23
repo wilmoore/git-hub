@@ -11,6 +11,9 @@ git-hub(1)
 
 ## COMMANDS
 
+  Omit the command (`git hub`) and you'll be taken directly to the main github page of your repo.
+
+
   `contributors`
 
   Visit your contributors list. Nothing wrong with a little commit vanity.
@@ -39,7 +42,15 @@ git-hub(1)
 
 ## EXAMPLES
 
+    % git hub
+
     % git hub pull-request
+
+    % git hub issues
+
+    % git hub contributors
+
+    % git hub stargazers
 
 ## AUTHOR
 
