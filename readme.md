@@ -3,15 +3,16 @@ git-hub(1)
 
 ## SYNOPSIS
 
-`git hub [--force-origin] <contributors | issues | pull-request | stargazers | wiki>`
+  `git hub [--force-origin] <contributors | issues | pull-request | stargazers | wiki>`
 
 ## DESCRIPTION
 
-  extension to control your github.com (or enterprise) repo from the command-line. Works with github.com or github enterprise repos.
+  Extension to control your Github repo from the command-line. Works with public Github.com or github:enterprise repos.
 
 ## RATIONALE
 
-  ...
+  I love git and Github. I love the shell/terminal. After doing "focussed" work in a topic branch, I want to type
+  `git hub pull-request` or `git hub issues` or `git hub` and be taken to the expected location on the Github website.
 
 ## COMMANDS
 
@@ -56,24 +57,39 @@ git-hub(1)
 
     % git hub stargazers
 
-## INSTALLATION
+## INSTALL
 
-  % mkdir ~/local
-  % cd !$
-  % git clone git://github.com/wilmoore/git-hub.git
-  % cd git-hub
+    % mkdir ~/local
+    % cd !$
+    % git clone git://github.com/wilmoore/git-hub.git
+    % cd git-hub
 
-  # ~/.bash_profile
-  export PATH=$HOME/local/git-hub/bin:$PATH
-  source $HOME/local/git-hub/etc/bash_completion.sh
+    # ~/.bash_profile
+    export PATH=$HOME/local/git-hub/bin:$PATH
+    source $HOME/local/git-hub/etc/bash_completion.sh
 
-  # update to latest
-  % cd $HOME/local/git-hub
-  % git pull origin master
+## UPGRADE
 
-  # update to a tag
-  % cd $HOME/local/git-hub
-  % git checkout x.x.x
+**to latest**
+
+    % cd $HOME/local/git-hub
+    % git pull origin master
+
+**to a tag**
+
+    % cd $HOME/local/git-hub
+    % git checkout x.x.x
+
+## UNINSTALL
+
+Remove the following from ~/.bash_profile
+
+    export PATH=$HOME/local/git-hub/bin:$PATH
+    source $HOME/local/git-hub/etc/bash_completion.sh
+
+Run the following command
+
+    % rm -rf ~/local/git-hub
 
 ## AUTHOR
 
