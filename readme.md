@@ -7,7 +7,11 @@ git-hub(1)
 
 ## DESCRIPTION
 
-  `git(1)` extension to control your github.com (or enterprise) repo from the command-line. Works with github.com or github enterprise repos.
+  extension to control your github.com (or enterprise) repo from the command-line. Works with github.com or github enterprise repos.
+
+## RATIONALE
+
+  ...
 
 ## COMMANDS
 
@@ -51,6 +55,25 @@ git-hub(1)
     % git hub contributors
 
     % git hub stargazers
+
+## INSTALLATION
+
+  % mkdir ~/local
+  % cd !$
+  % git clone git://github.com/wilmoore/git-hub.git
+  % cd git-hub
+
+  # ~/.bash_profile
+  export PATH=$HOME/local/git-hub/bin:$PATH
+  source $HOME/local/git-hub/etc/bash_completion.sh
+
+  # update to latest
+  % cd $HOME/local/git-hub
+  % git pull origin master
+
+  # update to a tag
+  % cd $HOME/local/git-hub
+  % git checkout x.x.x
 
 ## AUTHOR
 
