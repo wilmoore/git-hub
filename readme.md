@@ -7,16 +7,23 @@ git-hub(1)
 
 ## DESCRIPTION
 
-  Extension to control your Github repo from the command-line. Works with public Github.com or github:enterprise repos.
+  Extension to control your Github repo from the command-line.
+  Works with public Github.com or github:enterprise repos.
 
 ## RATIONALE
 
-  I love git and Github. I love the shell/terminal. After doing "focussed" work in a topic branch, I want to type
-  `git hub pull-request` or `git hub issues` or `git hub` and be taken to the expected location on the Github website.
+  I love git and Github. I love the shell/terminal. After doing
+  ["focussed"][git-process] work in a topic branch, I want to type
+  `git hub pull-request` or `git hub issues` or `git hub` and be
+  taken to the expected location on the Github website.
+
+  This extension does not require Ruby and does not require you to
+  provide username, password, or API key.
 
 ## COMMANDS
 
-  Omit the command (i.e. just type `git hub`) and you'll be taken directly to the main github page of your repo.
+  Omit the command (i.e. just type `git hub`) and you'll be taken
+  directly to the main github page of your repo.
 
 
   `contributors`
@@ -91,6 +98,11 @@ Run the following command
 
     % rm -rf ~/local/git-hub
 
+## INSPIRATION
+
+- [hub](https://github.com/defunkt/hub)
+- [git-extras](https://github.com/visionmedia/git-extras)
+
 ## AUTHOR
 
 Written by Wil Moore III &lt;<wil.moore@wilmoore.com>&gt;
@@ -102,3 +114,8 @@ Written by Wil Moore III &lt;<wil.moore@wilmoore.com>&gt;
 ## SEE ALSO
 
 &lt;<https://github.com/wilmoore/git-hub>&gt;
+
+
+
+
+[git-process]:  https://github.com/wilmoore/git-process
