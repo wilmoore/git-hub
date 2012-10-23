@@ -109,11 +109,8 @@ Written by Wil Moore III &lt;<wil.moore@wilmoore.com>&gt;
 
 ## REPORTING BUGS
 
-&lt;<https://github.com/wilmoore/git-hub/issues>&gt;
+https://github.com/wilmoore/git-hub/issues
 
-## SEE ALSO
-
-&lt;<https://github.com/wilmoore/git-hub>&gt;
 
 
 
