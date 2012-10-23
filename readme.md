@@ -11,7 +11,7 @@ git-hub(1)
 
 ## COMMANDS
 
-  Omit the command (`git hub`) and you'll be taken directly to the main github page of your repo.
+  Omit the command (i.e. just type `git hub`) and you'll be taken directly to the main github page of your repo.
 
 
   `contributors`
