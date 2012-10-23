@@ -136,4 +136,4 @@ https://github.com/wilmoore/git-hub/issues
     THE SOFTWARE.
 
 
-[git-process]:  https://github.com/wilmoore/git-process
+[git-process]:  https://github.com/jdigger/git-process
