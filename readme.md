@@ -7,7 +7,7 @@ git-hub(1)
 
 ## DESCRIPTION
 
-  `git(1)` extension to control your github.com (or enterprise) repo from the command-line. Works with github.com and github enterprise repos.
+  `git(1)` extension to control your github.com (or enterprise) repo from the command-line. Works with github.com or github enterprise repos.
 
 ## COMMANDS
 
