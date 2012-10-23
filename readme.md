@@ -13,23 +13,23 @@ git-hub(1)
 
   `contributors`
 
-  go to contributors list.
+  Visit your contributors list. Nothing wrong with a little commit vanity.
 
   `issues`
 
-  go to issue tracker.
+  Quickly navigate to the issue tracker.
 
   `pull-request`
 
-  new pull request from current branch.
+  Start a new pull request from the currently active (*) branch.
 
   `stargazers`
 
-  go to stargazers list.
+  Navigate to your stargazers list.
 
   `wiki`
 
-  go to wiki pages.
+  Go to the wiki.
 
 ## OPTIONS
 
