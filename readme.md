@@ -68,7 +68,7 @@ git-hub(1)
 
     % mkdir ~/local
     % cd !$
-    % git clone git://github.com/wilmoore/git-hub.git
+    % git clone https://github.com/wilmoore/git-hub.git
     % cd git-hub
 
     # ~/.bash_profile
