@@ -124,7 +124,7 @@ if [[ $1 == "issues" ]]; then
 fi
 
 if [[ $1 == "pull-request" ]]; then
-  if [ $(git branch -r | grep $CURRENT_BRANCH) ]; then
+  if [[ $(git branch -r | grep "origin/$CURRENT_BRANCH") ]]; then
     # if we are on a branch and it exists on origin, issue pull request against it
     open http://$(origin_url)/pull/new/$CURRENT_BRANCH
   else
