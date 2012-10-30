@@ -27,6 +27,7 @@ COMMANDS
 
 contributors          go to contributors list.
 issues                go to issue tracker.
+open                  open the github repo page in your default web browser.
 pull-request          new pull request from current branch.
 stargazers            go to stargazers list.
 wiki                  go to wiki pages.
@@ -41,7 +42,7 @@ f,force-origin  force the use of 'origin' rather than 'upstream'.
 ################################################################################
 
 # program version
-VERSION=0.0.2
+VERSION=0.0.3
 
 # run from a subdirectory
 SUBDIRECTORY_OK=Yes
@@ -158,6 +159,7 @@ if [[ $1 == "wiki" ]]; then
   exit 0
 fi
 
+# open
 if [[ $FORCE_ORIGIN -eq 1 ]]; then
   if [ ! -z "$CURRENT_BRANCH" ]; then
     open http://$(origin_url)/tree/$CURRENT_BRANCH

@@ -3,7 +3,7 @@ git-hub(1)
 
 ## SYNOPSIS
 
-  `git hub [--force-origin] <contributors | issues | pull-request | stargazers | wiki>`
+  `git hub [--force-origin] <contributors | issues | open | pull-request | stargazers | wiki>`
 
 ## DESCRIPTION
 
@@ -14,17 +14,13 @@ git-hub(1)
 
   I love git and Github. I love the shell/terminal. After doing
   ["focussed"][git-process] work in a topic branch, I want to type
-  `git hub pull-request` or `git hub issues` or `git hub` and be
+  `git hub open` or `git hub pull-request` or `git hub issues` and be
   taken to the expected location on the Github website.
 
   This extension does not require Ruby and does not require you to
   provide username, password, or API key.
 
 ## COMMANDS
-
-  Omit the command (i.e. just type `git hub`) and you'll be taken
-  directly to the main github page of your repo.
-
 
   `contributors`
 
@@ -33,6 +29,10 @@ git-hub(1)
   `issues`
 
   Quickly navigate to the issue tracker.
+
+  `open`
+
+  open the github repo page in your default web browser (also the default if you do not specify a command).
 
   `pull-request`
 
