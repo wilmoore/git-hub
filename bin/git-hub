@@ -28,6 +28,7 @@ COMMANDS
 contributors          go to contributors list.
 issues                go to issue tracker.
 open                  open the github repo page in your default web browser.
+pages                 open the github pages url in your default web browser.
 pull-request          new pull request from current branch.
 stargazers            go to stargazers list.
 wiki                  go to wiki pages.
@@ -42,7 +43,7 @@ f,force-origin  force the use of 'origin' rather than 'upstream'.
 ################################################################################
 
 # program version
-VERSION=0.0.3
+VERSION=0.0.4
 
 # run from a subdirectory
 SUBDIRECTORY_OK=Yes
@@ -85,6 +86,10 @@ shift
 # helpers
 ################################################################################
 
+github_domain(){
+  git config --get remote.origin.url | awk -F: '{print $1}' | awk -F@ '{print $NF}'
+}
+
 upstream_url() {
   local URL=$(git config --get remote.upstream.url)
   echo $(echo ${URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
@@ -103,6 +108,18 @@ upstream_or_origin() {
   fi
 }
 
+repo_user() {
+  git config --get remote.origin.url | awk -F: '{print $2}' | awk -F/ '{print $1}'
+}
+
+repo_name() {
+  git config --get remote.origin.url | awk -F: '{print $2}' | awk -F/ '{print $2}' | awk -F. '{print $1}'
+}
+
+gh_page_url() {
+  echo $(repo_user).$(github_domain)/$(repo_name)
+}
+
 ################################################################################
 # commands
 ################################################################################
@@ -114,6 +131,11 @@ if [[ $1 == "contributors" ]]; then
     open http://$(upstream_or_origin)/graphs/contributors
   fi
 
+  exit 0
+fi
+
+if [[ $1 == "pages" ]]; then
+  echo http://$(gh_page_url)
   exit 0
 fi
 

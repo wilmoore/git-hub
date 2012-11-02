@@ -34,6 +34,10 @@ git-hub(1)
 
   open the github repo page in your default web browser (also the default if you do not specify a command).
 
+  `pages`
+
+  open the github pages url in your default web browser.
+
   `pull-request`
 
   Start a new pull request from the currently active (*) branch.

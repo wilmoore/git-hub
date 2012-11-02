@@ -1,3 +1,3 @@
 _git_hub(){
-  __gitcomp "contributors issues open pull-request stargazers wiki"
+  __gitcomp "contributors issues open pages pull-request stargazers wiki"
 }
