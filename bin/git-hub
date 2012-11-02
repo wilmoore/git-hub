@@ -43,7 +43,7 @@ f,force-origin  force the use of 'origin' rather than 'upstream'.
 ################################################################################
 
 # program version
-VERSION=0.0.4
+VERSION=0.0.5
 
 # run from a subdirectory
 SUBDIRECTORY_OK=Yes
@@ -135,7 +135,7 @@ if [[ $1 == "contributors" ]]; then
 fi
 
 if [[ $1 == "pages" ]]; then
-  echo http://$(gh_page_url)
+  open http://$(gh_page_url)
   exit 0
 fi
 
