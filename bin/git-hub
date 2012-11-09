@@ -43,7 +43,7 @@ f,force-origin  force the use of 'origin' rather than 'upstream'.
 ################################################################################
 
 # program version
-VERSION=0.0.5
+VERSION=0.0.6
 
 # run from a subdirectory
 SUBDIRECTORY_OK=Yes
@@ -182,18 +182,10 @@ if [[ $1 == "wiki" ]]; then
 fi
 
 # open
-if [[ $FORCE_ORIGIN -eq 1 ]]; then
-  if [ ! -z "$CURRENT_BRANCH" ]; then
-    open http://$(origin_url)/tree/$CURRENT_BRANCH
-  else
-    open http://$(origin_url)
-  fi
+if [ ! -z "$CURRENT_BRANCH" ]; then
+  open http://$(origin_url)/tree/$CURRENT_BRANCH
 else
-  if [ ! -z "$CURRENT_BRANCH" ]; then
-    open http://$(upstream_or_origin)/tree/$CURRENT_BRANCH
-  else
-    open http://$(upstream_or_origin)
-  fi
+  open http://$(origin_url)
 fi
 
 exit 0
