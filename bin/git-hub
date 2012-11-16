@@ -43,7 +43,7 @@ f,force-origin  force the use of 'origin' rather than 'upstream'.
 ################################################################################
 
 # program version
-VERSION=0.0.6
+VERSION=0.0.7
 
 # run from a subdirectory
 SUBDIRECTORY_OK=Yes
@@ -126,24 +126,24 @@ gh_page_url() {
 
 if [[ $1 == "contributors" ]]; then
   if [[ $FORCE_ORIGIN -eq 1 ]]; then
-    open http://$(origin_url)/graphs/contributors
+    git web--browse http://$(origin_url)/graphs/contributors
   else
-    open http://$(upstream_or_origin)/graphs/contributors
+    git web--browse http://$(upstream_or_origin)/graphs/contributors
   fi
 
   exit 0
 fi
 
 if [[ $1 == "pages" ]]; then
-  open http://$(gh_page_url)
+  git web--browse http://$(gh_page_url)
   exit 0
 fi
 
 if [[ $1 == "issues" ]]; then
   if [[ $FORCE_ORIGIN -eq 1 ]]; then
-    open http://$(origin_url)/issues
+    git web--browse http://$(origin_url)/issues
   else
-    open http://$(upstream_or_origin)/issues
+    git web--browse http://$(upstream_or_origin)/issues
   fi
 
   exit 0
@@ -152,10 +152,10 @@ fi
 if [[ $1 == "pull-request" ]]; then
   if [[ $(git branch --remotes | grep -P "origin/$CURRENT_BRANCH$") ]]; then
     # if we are on a branch and it exists on origin, issue pull request against it
-    open http://$(origin_url)/pull/new/$CURRENT_BRANCH
+    git web--browse http://$(origin_url)/pull/new/$CURRENT_BRANCH
   else
     # otherwise, issue a blank pull request
-    open http://$(origin_url)/pull/new
+    git web--browse http://$(origin_url)/pull/new
   fi
 
   exit 0
@@ -163,9 +163,9 @@ fi
 
 if [[ $1 == "stargazers" ]]; then
   if [[ $FORCE_ORIGIN -eq 1 ]]; then
-    open http://$(origin_url)/stargazers
+    git web--browse http://$(origin_url)/stargazers
   else
-    open http://$(upstream_or_origin)/stargazers
+    git web--browse http://$(upstream_or_origin)/stargazers
   fi
 
   exit 0
@@ -173,9 +173,9 @@ fi
 
 if [[ $1 == "wiki" ]]; then
   if [[ $FORCE_ORIGIN -eq 1 ]]; then
-    open http://$(origin_url)/wiki
+    git web--browse http://$(origin_url)/wiki
   else
-    open http://$(upstream_or_origin)/wiki
+    git web--browse http://$(upstream_or_origin)/wiki
   fi
 
   exit 0
@@ -183,9 +183,9 @@ fi
 
 # open
 if [ ! -z "$CURRENT_BRANCH" ]; then
-  open http://$(origin_url)/tree/$CURRENT_BRANCH
+  git web--browse http://$(origin_url)/tree/$CURRENT_BRANCH
 else
-  open http://$(origin_url)
+  git web--browse http://$(origin_url)
 fi
 
 exit 0
