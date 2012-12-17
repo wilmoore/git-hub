@@ -43,7 +43,7 @@ f,force-origin  force the use of 'origin' rather than 'upstream'.
 ################################################################################
 
 # program version
-VERSION=0.0.7
+VERSION=0.0.8
 
 # run from a subdirectory
 SUBDIRECTORY_OK=Yes
@@ -55,11 +55,9 @@ SUBDIRECTORY_OK=Yes
 . git-sh-setup
 . git-sh-i18n
 
-# require a working tree
 require_work_tree_exists
 
-# current git branch [or is this better?: $(git symbolic-ref -q HEAD)]
-CURRENT_BRANCH=$(git describe --contains --all HEAD)
+CURRENT_BRANCH=$(git name-rev --name-only HEAD)
 
 # force use of origin remote?
 for opt; do
