@@ -85,17 +85,33 @@ shift
 ################################################################################
 
 github_domain(){
-  git config --get remote.origin.url | awk -F: '{print $1}' | awk -F@ '{print $NF}'
+  local url=$(git config --get remote.origin.url)
+
+  if [[ $(echo $url | grep '@') ]]; then
+    echo $url | awk -F: '{print $1}' | awk -F@ '{print $NF}'
+  else
+    echo $url | awk -F/ '{print $3}'
+  fi
 }
 
 upstream_url() {
-  local URL=$(git config --get remote.upstream.url)
-  echo $(echo ${URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
+  local url=$(git config --get remote.upstream.url)
+
+  if [[ $(echo $url | grep '@') ]]; then
+    echo $url | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//'
+  else
+    echo $url | sed -e 's@\.git@@g' -e 's@https://@@g' -e 's@http://@@g'
+  fi
 }
 
 origin_url() {
-  local URL=$(git config --get remote.origin.url)
-  echo $(echo ${URL} | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//')
+  local url=$(git config --get remote.origin.url)
+
+  if [[ $(echo $url | grep '@') ]]; then
+    echo $url | tr ':' '/' | sed -e 's@.git$@@' -e 's/^[^@]*@//'
+  else
+    echo $url | sed -e 's@\.git@@g' -e 's@https://@@g' -e 's@http://@@g'
+  fi
 }
 
 upstream_or_origin() {
